@@ -12,7 +12,7 @@ module Tux
       }
     end
 
-    def settings
+    def sinatra_settings
       meths = (Tux.app_class.methods(false) + Sinatra::Base.methods(false)).
         sort.map(&:to_s).select {|e| e[/=$/] }.map {|e| e[0..-2] } - SETTINGS
       meths.map {|meth| [meth, (Tux.app_class.send(meth) rescue $!.inspect)] }
@@ -40,7 +40,7 @@ module Tux
       puts CommandsFormatted.format(super)
     end
 
-    def settings
+    def sinatra_settings
       puts CommandsFormatted.format(super)
     end
   end
